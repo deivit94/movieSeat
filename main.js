@@ -15,21 +15,12 @@ seats.forEach((seat, index) => {    // paint the seats according to their state
 })
 
 movie.addEventListener('change', () => {    // listen when client select new movie
-  theCurrentMovie.value = movie.value
+  resetMovieData(movie.value)
+  
+  seats.forEach((seat, index) => {
+    changeSeatColor(seat, index)
+  })   
 })
-
-const theCurrentMovie = {   // when new movie was selected, this order to update the current movie data (name, price, seats state)
-  get value() {
-    return currentMovie;
-  },
-  set value(newValue) {
-    resetMovieData(newValue)
-
-    seats.forEach((seat, index) => {
-      changeSeatColor(seat, index)
-    })   
-  }
-}
 
 seats.forEach((seat, index) => {  // when client click a seat that will be selected or available
     seat.addEventListener('click', () => {
