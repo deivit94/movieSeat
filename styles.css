@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 18px;
+}
+
+.main-div {
+    background-color: #5f5f68;
+    height: 90%;
+    width: 400px;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-selector, .seat-meaning, .screen, .seats-info{
+    display: flex;
+    justify-content: center;
+}
+
+.seat-meaning span{
+    margin-left: 5px;
+}
+.half-circle-meaning {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-color: #2d2d3b;
+    border-radius: 50px 50px 0 0;
+    margin: 2px 2px;
+}
+
+.seats {
+    display: flex;
+    width: 100%;
+}
+
+.seat-group {
+    display: flex;
+    justify-content: center;
+
+}
+.seats-first-column {
+    width: 30%;
+}
+.seats-second-column {
+    width: 40%;
+}
+.seats-third-column {
+    width: 30%;
+}
+
+
+.screen-img {
+    width: 300px;
+    height: 70px;
+    background-color: white;
+    box-shadow: 0px 5px 5px 5px #eeecec;
+}
+
+.half-circle {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-color: #2d2d3b;
+    border-radius: 50px 50px 0 0;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #dada3c;
+}
+
+.occupied {
+    background-color: #ffffff;
+}
