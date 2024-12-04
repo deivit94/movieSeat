@@ -25,13 +25,13 @@ movie.addEventListener('change', () => {    // listen when client select new mov
 seats.forEach((seat, index) => {  // when client click a seat that will be selected or available
     seat.addEventListener('click', () => {
       const dataBaseSeat = dataBase[currentMovie].seats
-      if (dataBaseSeat[index] === false) {
-        dataBaseSeat[index] = true //from Available to Occupied
+      if (dataBaseSeat[index] === 'available') {
+        dataBaseSeat[index] = 'occupied' 
         numberTickets++
         updatePaymentInfo()
         paintSeat(seat, '#dada3c')
-      } else if (dataBaseSeat[index] === true) {
-        dataBaseSeat[index] = false //from Occupied to Available
+      } else if (dataBaseSeat[index] === 'occupied') {
+        dataBaseSeat[index] = 'available'
         numberTickets--
         updatePaymentInfo()
         paintSeat(seat, '#2d2d3b')
@@ -55,8 +55,8 @@ function resetMovieData(newValue) {
 
 function changeSeatColor(seat, index) {
   const state = dataBase[currentMovie].seats
-  if (state[index] === null) paintSeat(seat, 'white')
-  if (state[index] === false) paintSeat(seat, '#2d2d3b')
+  if (state[index] === 'occupied') paintSeat(seat, 'white')
+  if (state[index] === 'available') paintSeat(seat, '#2d2d3b')
 }
 
 function paintSeat(seat, color){
