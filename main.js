@@ -7,7 +7,6 @@ const howManyTicket = document.getElementById('howManyTicket')
 const howMuchTicket = document.getElementById('howMuchTicket')
 let currentMovie = 'me'
 let currentPrice = 10
-let numberTickets = 0
 
 
 seats.forEach((seat, index) => {    // paint the seats according to their state 
@@ -26,13 +25,13 @@ seats.forEach((seat, index) => {  // when client click a seat that will be selec
     seat.addEventListener('click', () => {
       const dataBaseSeat = dataBase[currentMovie].seats
       if (dataBaseSeat[index] === 'available') {
-        dataBaseSeat[index] = 'occupied' 
-        numberTickets++
+        dataBaseSeat[index] = 'selected'
+        dataBase[currentMovie].sold++
         updatePaymentInfo()
         paintSeat(seat, '#dada3c')
-      } else if (dataBaseSeat[index] === 'occupied') {
+      } else if (dataBaseSeat[index] === 'selected') {
         dataBaseSeat[index] = 'available'
-        numberTickets--
+        dataBase[currentMovie].sold--
         updatePaymentInfo()
         paintSeat(seat, '#2d2d3b')
       }
@@ -47,16 +46,16 @@ seats.forEach((seat, index) => {  // when client click a seat that will be selec
 
 function resetMovieData(newValue) {
   currentMovie = newValue;
-  numberTickets = 0
-  howManyTicket.innerHTML = 0
-  howMuchTicket.innerHTML = 0
   currentPrice = dataBase[currentMovie].price
+  howManyTicket.innerHTML = dataBase[currentMovie].sold
+  howMuchTicket.innerHTML = dataBase[currentMovie].sold * currentPrice
 }
 
 function changeSeatColor(seat, index) {
   const state = dataBase[currentMovie].seats
-  if (state[index] === 'occupied') paintSeat(seat, 'white')
+  if (state[index] === 'selected') paintSeat(seat, '#dada3c')
   if (state[index] === 'available') paintSeat(seat, '#2d2d3b')
+  if (state[index] === 'occupied') paintSeat(seat, 'white')
 }
 
 function paintSeat(seat, color){
@@ -64,6 +63,6 @@ function paintSeat(seat, color){
 }
 
 function updatePaymentInfo(){
-          howManyTicket.innerHTML = numberTickets
-        howMuchTicket.innerHTML = numberTickets * currentPrice
+        howManyTicket.innerHTML = dataBase[currentMovie].sold
+        howMuchTicket.innerHTML = dataBase[currentMovie].sold * currentPrice
 }
